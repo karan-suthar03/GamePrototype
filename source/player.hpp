@@ -28,7 +28,16 @@ public:
     bool isGrounded() const { return m_Grounded; }
     void SetGrounded(bool grounded);
 
-    void Land() { m_Grounded = true; m_Velocity.y = 0.0f; }
+    void Land() { 
+
+        // prevent landing if the player is moving upwards
+        if(m_Velocity.y < 0){
+            return;
+        }
+        
+        m_Grounded = true; 
+        m_Velocity.y = 0.0f; 
+    }
 
     float HitboxOffsetX = 14.0f;
     float HitboxOffsetY = 0.0f;
